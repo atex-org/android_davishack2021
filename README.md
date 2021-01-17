@@ -1,4 +1,4 @@
-### Hi there, We are ATEX - [website] 👋
+### Hi there, We are ATEX - [Andriod App] 👋
 [![Website](https://img.shields.io/badge/Website-atex.org-brightgreen)](https://atex.org)
 
 ![hackdavis](https://user-images.githubusercontent.com/60949882/104137982-eba68980-536e-11eb-9382-69c613070a4b.gif)
