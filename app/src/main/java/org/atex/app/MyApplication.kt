@@ -10,7 +10,7 @@ import io.realm.mongodb.AppConfiguration
 
 lateinit var atexApp: App
 inline fun <reified T> T.TAG(): String = T::class.java.simpleName
-
+const val PARTITION = "version_2"
 class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -27,10 +28,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomAppBar: BottomAppBar
     private lateinit var fab: FloatingActionButton
     private lateinit var appBarLayout: AppBarLayout
-
+    private lateinit var mainViewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         val navigationView = findViewById<NavigationView>(R.id.navigation_view)

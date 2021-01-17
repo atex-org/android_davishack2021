@@ -7,6 +7,7 @@ plugins {
 //    id 'com.google.gms.google-services'
 }
 
+
 buildDir = new File("D://Android/_Yomemo/Builds/${this.rootProject.name}")
 
 android {
@@ -30,7 +31,7 @@ android {
     }
 
     buildTypes {
-        def appId = "realm-atex-ovtxa"
+        def appId = "atex-data-xnqaq"
         debug {
             buildConfigField "String", "MONGODB_REALM_APP_ID", "\"${appId}\""
         }
@@ -90,10 +91,8 @@ dependencies {
     //ImagePicker
     implementation 'com.github.dhaval2404:imagepicker:1.8'
 
-
-
     //Mongodb
-//    implementation "io.realm:android-adapters:4.0.0"
+    implementation "io.realm:android-adapters:4.0.0"
 
     // Testing
     testImplementation 'junit:junit:4.13.1'

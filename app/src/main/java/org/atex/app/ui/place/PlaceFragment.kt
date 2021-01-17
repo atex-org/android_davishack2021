@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
@@ -14,8 +15,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 import org.atex.app.utils.CustomInfoWindow
 import org.atex.app.activity.MainActivity
 import org.atex.app.R
-import org.atex.app.model.Event
+import org.atex.app.TAG
+import org.atex.app.model.event
 import org.atex.app.model.Location
+import org.atex.app.ui.home.HomeViewModel
 
 
 class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
@@ -24,6 +27,14 @@ class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickLis
     private lateinit var main: MainActivity
     private lateinit var marker1: Marker
     var position = LatLng(38.5382322, -121.7617125)
+    private lateinit var placeViewModel: PlaceViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        main = activity as MainActivity
+        placeViewModel = ViewModelProvider(main).get(PlaceViewModel::class.java)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,6 +43,7 @@ class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickLis
         main = activity as MainActivity
         return inflater.inflate(R.layout.fragment_place, container, false)
     }
+
     override fun onResume() {
         super.onResume()
         main.appBarVisible(false)
@@ -41,6 +53,7 @@ class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickLis
         super.onStop()
         main.appBarVisible(true)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
@@ -57,6 +70,13 @@ class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickLis
         location.latitude = 38.5382322
         location.longitude = -121.7617125
         location.address = "1 Shields Ave, Davis, CA 95616"
+
+        placeViewModel.loadEvent()
+        placeViewModel.eventUpdated.observe(viewLifecycleOwner, {
+            placeViewModel.event.forEach {
+                Log.d(TAG(), "title: " + it.title)
+            }
+        })
 //        val event1 = Event(
 //            1,
 //            "100 Tree Planting",
@@ -70,7 +90,7 @@ class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickLis
         googleMap.setInfoWindowAdapter(customInfoWindow)
     }
 
-    private fun createMarker(googleMap: GoogleMap, event: Event) {
+    private fun createMarker(googleMap: GoogleMap, event: event) {
         val markerOptions = MarkerOptions()
         event.location?.latitude?.let { latitude ->
             event.location?.longitude?.let { longitude ->
@@ -93,7 +113,7 @@ class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickLis
 
     override fun onInfoWindowClick(marker: Marker) {
         Log.d("onInfoWindowClick", "" + marker.title)
-        val event = marker.tag as Event
+        val event = marker.tag as event
         Log.d("Event", "id: " + event._id)
 //        findNavController().navigate(R.id.action_mapFragment_to_pointsAwardedFragment)
     }

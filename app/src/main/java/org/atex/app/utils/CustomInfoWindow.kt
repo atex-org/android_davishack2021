@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.Marker
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import org.atex.app.R
-import org.atex.app.model.Event
+import org.atex.app.model.event
 import java.lang.Exception
 
 
@@ -27,7 +27,7 @@ class CustomInfoWindow(private val context: Fragment) : GoogleMap.InfoWindowAdap
             val textMessage = view.findViewById<TextView>(R.id.textMessage)
             val textType = view.findViewById<TextView>(R.id.textType)
             val imageEvent = view.findViewById<ImageView>(R.id.imageEvent)
-            val event = marker.tag as Event
+            val event = marker.tag as event
             textTitle.text = event.title
             textMessage.text = event.detail
             textType.text = event.location?.address

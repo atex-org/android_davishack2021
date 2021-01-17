@@ -4,7 +4,7 @@ import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import org.bson.types.ObjectId
 
-open class User(
+open class user(
     @PrimaryKey var _id: ObjectId? = null,
     var __v: Long? = null,
     var atex_key: String = "",
@@ -12,5 +12,5 @@ open class User(
     var fullName: String? = null,
     var fullname: String? = null,
     var password: String? = null
-) : RealmObject() {}
+): RealmObject() {}
 

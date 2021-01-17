@@ -5,12 +5,12 @@ import io.realm.annotations.PrimaryKey
 import org.bson.types.ObjectId
 
 
-open class Ranking(
+open class ranking(
     @PrimaryKey var _id: ObjectId? = null,
     var __v: Long? = null,
     var atex_key: String = "",
     var name: String? = null,
     var photoUrl: String? = null,
-    var point: String? = null,
+    var point: Long? = null,
     var user_id: String? = null
 ): RealmObject() {}

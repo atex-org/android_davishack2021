@@ -1,12 +1,11 @@
 package org.atex.app.model
 
-import io.realm.RealmList
-import io.realm.RealmObject
+import io.realm.RealmList;
+import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey
-import org.bson.types.ObjectId
-import java.util.*
-
-open class Event(
+import java.util.Date;
+import org.bson.types.ObjectId;
+open class event(
     @PrimaryKey var _id: ObjectId? = null,
     var __v: Long? = null,
     var atex_key: String = "",

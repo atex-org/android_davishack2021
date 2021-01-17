@@ -8,14 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import org.atex.app.R
-import org.atex.app.model.Ranking
+import org.atex.app.model.ranking
 import org.atex.app.utils.StartSnapHelper
 
 
 class RankingAdapter() : RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
 
-    var items = mutableListOf<Ranking>()
+    var items = mutableListOf<ranking>()
     override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -27,17 +28,17 @@ class RankingAdapter() : RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
     fun clear(){
         this.items.clear()
     }
-    fun insertItem(item: Ranking) {
+    fun insertItem(item: ranking) {
         this.items.add(item)
         notifyDataSetChanged()
     }
 
-    fun insertItem(item: Ranking, position: Int) {
+    fun insertItem(item: ranking, position: Int) {
         this.items.add(item)
         notifyItemInserted(position)
     }
 
-    fun insertItems(items: MutableList<Ranking>) {
+    fun insertItems(items: MutableList<ranking>) {
         this.items = items
         this.notifyDataSetChanged()
     }
@@ -53,7 +54,7 @@ class RankingAdapter() : RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
      * The interface that receives onItemClick messages.
      */
     interface OnItemClickListener {
-        fun onItemClickListener(view: View, item: Ranking)
+        fun onItemClickListener(view: View, item: ranking)
     }
 
     private var listener: OnItemClickListener? = null
@@ -76,20 +77,21 @@ class RankingAdapter() : RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
         private val text_ranking: TextView = view.findViewById(R.id.text_ranking)
         private val profile_image: ImageView = view.findViewById(R.id.profile_image)
 
-        fun bind(item: Ranking) {
+        fun bind(item: ranking) {
 //            if (item.ranking == 1) {
 //                image_top_1.visibility = View.VISIBLE
 //            }
 //            else{
 //                image_top_1.visibility = View.GONE
 //            }
-//            text_ranking.text = item.ranking.toString()
-////            loadImage(imagePoster, AppConstants.POSTER_PATH + item.posterPath)
-//            display_name.text = item.displayName
-
-//            GlideApp.with(profile_image.context).load(item.photoUrl)
-//                .apply(RequestOptions.centerInsideTransform())
-//                .into(profile_image)
+            text_ranking.text = item.point.toString()
+            display_name.text = item.name
+            val url = item.photoUrl
+            if (!url.isNullOrEmpty()) {
+                Picasso.get().load(url).error(R.drawable.maps_sv_error_icon)
+                    .placeholder(R.drawable.ic_app_icon)
+                    .into(profile_image)
+            }
         }
     }
 

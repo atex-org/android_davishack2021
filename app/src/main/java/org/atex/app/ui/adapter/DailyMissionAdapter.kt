@@ -73,9 +73,7 @@ class DailyMissionAdapter() : RecyclerView.Adapter<DailyMissionAdapter.ViewHolde
         private val imagePoster: ImageView = view.findViewById(R.id.image_poster)
         private val text_title: TextView = view.findViewById(R.id.text_title)
         fun bind(item: DailyMission) {
-//            loadImage(imagePoster, AppConstants.POSTER_PATH + item.posterPath)
             text_title.text = item.title
-
             imagePoster.setImageResource(getResource(item.id))
         }
 

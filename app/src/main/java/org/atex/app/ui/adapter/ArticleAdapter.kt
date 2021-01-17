@@ -10,15 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import org.atex.app.R
-import org.atex.app.model.Article
+import org.atex.app.model.article
 import org.atex.app.ui.home.HomeFragment
-import org.atex.app.utils.CustomInfoWindow
-import org.atex.app.utils.StartSnapHelper
 
 
 class ArticleAdapter() : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
 
-    var items = mutableListOf<Article>()
+    var items = mutableListOf<article>()
     override fun getItemCount(): Int = items.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -27,17 +25,17 @@ class ArticleAdapter() : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
         return ViewHolder(v)
     }
 
-    fun insertItem(item: Article) {
+    fun insertItem(item: article) {
         this.items.add(item)
         notifyDataSetChanged()
     }
 
-    fun insertItem(item: Article, position: Int) {
+    fun insertItem(item: article, position: Int) {
         this.items.add(item)
         notifyItemInserted(position)
     }
 
-    fun insertItems(items: MutableList<Article>) {
+    fun insertItems(items: MutableList<article>) {
         this.items = items
         this.notifyDataSetChanged()
     }
@@ -53,7 +51,7 @@ class ArticleAdapter() : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
      * The interface that receives onItemClick messages.
      */
     interface OnItemClickListener {
-        fun onItemClickListener(view: View, item: Article)
+        fun onItemClickListener(view: View, item: article)
     }
 
     private var listener: OnItemClickListener? = null
@@ -74,7 +72,7 @@ class ArticleAdapter() : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val imagePoster: ImageView = view.findViewById(R.id.image_poster)
         private val text_title: TextView = view.findViewById(R.id.text_title)
-        fun bind(item: Article) {
+        fun bind(item: article) {
 //            loadImage(imagePoster, AppConstants.POSTER_PATH + item.posterPath)
             text_title.text = item.title
             val url = item.thumbnailUrl
