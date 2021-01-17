@@ -1,0 +1,3 @@
+include ':waste_ai'
+include ':app'
+rootProject.name = "Atex"
