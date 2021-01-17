@@ -77,15 +77,15 @@ class RankingAdapter() : RecyclerView.Adapter<RankingAdapter.ViewHolder>() {
         private val profile_image: ImageView = view.findViewById(R.id.profile_image)
 
         fun bind(item: Ranking) {
-            if (item.ranking == 1) {
-                image_top_1.visibility = View.VISIBLE
-            }
-            else{
-                image_top_1.visibility = View.GONE
-            }
-            text_ranking.text = item.ranking.toString()
-//            loadImage(imagePoster, AppConstants.POSTER_PATH + item.posterPath)
-            display_name.text = item.displayName
+//            if (item.ranking == 1) {
+//                image_top_1.visibility = View.VISIBLE
+//            }
+//            else{
+//                image_top_1.visibility = View.GONE
+//            }
+//            text_ranking.text = item.ranking.toString()
+////            loadImage(imagePoster, AppConstants.POSTER_PATH + item.posterPath)
+//            display_name.text = item.displayName
 
 //            GlideApp.with(profile_image.context).load(item.photoUrl)
 //                .apply(RequestOptions.centerInsideTransform())

@@ -1,12 +1,15 @@
 package org.atex.app.model
 
 import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+import org.bson.types.ObjectId
 
 
-open class Article  : RealmObject() {
-    var _id = 0
-    var title: String? = ""
-    var description: String? = ""
-    var thumbnailUrl: String? = ""
-    var detail: String? = ""
-}
+open class Article(
+    @PrimaryKey var _id: ObjectId? = null,
+    var atex_key: String = "",
+    var description: String? = null,
+    var detail: String? = null,
+    var thumbnailUrl: String? = null,
+    var title: String? = null
+) : RealmObject() {}

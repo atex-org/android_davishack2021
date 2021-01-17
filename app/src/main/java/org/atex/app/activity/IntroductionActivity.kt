@@ -13,7 +13,7 @@ import org.atex.app.utils.Rotate3dAnimation
 
 
 class IntroductionActivity : AppCompatActivity() {
-    private val SPLASH_DURATION = 2000L
+    private val SPLASH_DURATION = 1500L
     var centerX = 0f
     var centerY = 0f
 

@@ -30,7 +30,7 @@ android {
     }
 
     buildTypes {
-        def appId = "project_hackathon-zyiww"
+        def appId = "realm-atex-ovtxa"
         debug {
             buildConfigField "String", "MONGODB_REALM_APP_ID", "\"${appId}\""
         }

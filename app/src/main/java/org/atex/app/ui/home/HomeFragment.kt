@@ -1,18 +1,24 @@
 package org.atex.app.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import io.realm.Realm
+import io.realm.mongodb.sync.SyncConfiguration
 import org.atex.app.R
+import org.atex.app.atexApp
 import org.atex.app.model.Article
 import org.atex.app.model.DailyMission
 import org.atex.app.ui.adapter.ArticleAdapter
 import org.atex.app.ui.adapter.DailyMissionAdapter
 import org.atex.app.ui.adapter.RankingAdapter
+import org.bson.types.ObjectId
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment(), DailyMissionAdapter.OnItemClickListener,
@@ -47,7 +53,23 @@ class HomeFragment : Fragment(), DailyMissionAdapter.OnItemClickListener,
         rankingAdapter = RankingAdapter()
         rankingAdapter.initRecyclerViews(recyclerRanking)
 
+        val partitionValue: String = "atex_key"
+//        val user: User? = atexApp.currentUser()
 
+//        val config = SyncConfiguration.Builder(user, partitionValue)
+//            .build()
+//        val backgroundThreadRealm : Realm = Realm.getInstance(config)
+
+        val config = SyncConfiguration.Builder(atexApp.currentUser(), partitionValue)
+            .allowQueriesOnUiThread(true)
+            .allowWritesOnUiThread(true)
+            .build()
+        Realm.getInstanceAsync(config, object : Realm.Callback() {
+            override fun onSuccess(realm: Realm) {
+                            val ranking : RealmResults<Ranking> = realm.where<Ranking>().findAll()
+                
+            }
+        })
 
         val items = mutableListOf<DailyMission>()
         var item = item(
@@ -86,29 +108,36 @@ class HomeFragment : Fragment(), DailyMissionAdapter.OnItemClickListener,
         articleAdapter.insertItems(createArticles())
         return root
     }
-
+    private fun getRandomHexString(numchars: Int): String? {
+        val r = Random()
+        val sb = StringBuffer()
+        while (sb.length < numchars) {
+            sb.append(Integer.toHexString(r.nextInt()))
+        }
+        return sb.toString().substring(0, numchars)
+    }
     private fun createArticles(): ArrayList<Article> {
         val articles: ArrayList<Article> = ArrayList()
         val article1 = Article()
-        article1._id = 1
+        article1._id = ObjectId(getRandomHexString(24))
         article1.title = "Recycle clean bottles, cans, paper and cardboard"
         article1.thumbnailUrl =
             "https://github.com/atex-org/davishack2021/raw/main/public/images/article/article-what-to-recycle.png"
 
         val article2 = Article()
-        article2._id = 2
+        article2._id =ObjectId(getRandomHexString(24))
         article2.title = "Keep food and liquid out of your recycling"
         article2.thumbnailUrl =
             "https://github.com/atex-org/davishack2021/raw/main/public/images/article/article-no-food-recycling-illustration.png"
 
         val article3 = Article()
-        article3._id = 3
+        article3._id =ObjectId(getRandomHexString(24))
         article3.title = "No loose plastic bags and no bagged recyclables"
         article3.thumbnailUrl =
             "https://github.com/atex-org/davishack2021/raw/main/public/images/article/article-no-plastic-recycling-illustration.png"
 
         val article4 = Article()
-        article4._id = 4
+        article4._id = ObjectId(getRandomHexString(24))
         article4.title = "Food & Beverage Containers"
         article4.thumbnailUrl =
             "https://github.com/atex-org/davishack2021/raw/main/public/images/article/Beverage-Containers.jpg"

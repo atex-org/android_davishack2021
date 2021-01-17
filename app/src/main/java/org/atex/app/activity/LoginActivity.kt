@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import io.realm.mongodb.Credentials
+import io.realm.mongodb.User
 import kotlinx.android.synthetic.main.activity_login.*
 import org.atex.app.R
 import org.atex.app.TAG
@@ -43,7 +44,10 @@ class LoginActivity : AppCompatActivity() {
         loginButton = findViewById(R.id.button_login)
         createUserButton = findViewById(R.id.text_register)
 
-
+        val user: User? = atexApp.currentUser()
+        user?.let {
+            onLoginSuccess()
+        }
         input_password.setOnEditorActionListener { v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 signIn()

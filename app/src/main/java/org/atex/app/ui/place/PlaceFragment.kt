@@ -57,15 +57,15 @@ class PlaceFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickLis
         location.latitude = 38.5382322
         location.longitude = -121.7617125
         location.address = "1 Shields Ave, Davis, CA 95616"
-        val event1 = Event(
-            1,
-            "100 Tree Planting",
-            "",
-            "",
-            "Are you looking for opportunities to brainstorm concepts and think about how to tackle environmental challenges differently in 2019?  Applications for the Young Champions of the Earth Prize 2019 are now open. Seven winners aged 18-30 from around the globe will win seed funding and skilled mentoring for their groundbreaking ideas to create positive environmental impact.  In the meantime, why not explore these events and festivals for 2019, which aim to inspire environmental action and positive opportunities to network?",
-            location
-        )
-        createMarker(mMap, event1)
+//        val event1 = Event(
+//            1,
+//            "100 Tree Planting",
+//            "",
+//            "",
+//            "Are you looking for opportunities to brainstorm concepts and think about how to tackle environmental challenges differently in 2019?  Applications for the Young Champions of the Earth Prize 2019 are now open. Seven winners aged 18-30 from around the globe will win seed funding and skilled mentoring for their groundbreaking ideas to create positive environmental impact.  In the meantime, why not explore these events and festivals for 2019, which aim to inspire environmental action and positive opportunities to network?",
+//            location
+//        )
+//        createMarker(mMap, event1)
         val customInfoWindow = CustomInfoWindow(this)
         googleMap.setInfoWindowAdapter(customInfoWindow)
     }
