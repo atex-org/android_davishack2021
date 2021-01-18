@@ -66,14 +66,7 @@ class HomeFragment : Fragment(), DailyMissionAdapter.OnItemClickListener,
     }
 
 
-    private fun getRandomHexString(numchars: Int): String {
-        val r = Random()
-        val sb = StringBuffer()
-        while (sb.length < numchars) {
-            sb.append(Integer.toHexString(r.nextInt()))
-        }
-        return sb.toString().substring(0, numchars)
-    }
+
 
     private fun createDailyMission() {
         val items = mutableListOf<DailyMission>()

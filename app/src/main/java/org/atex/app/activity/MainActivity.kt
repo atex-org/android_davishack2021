@@ -1,5 +1,6 @@
 package org.atex.app.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
@@ -19,8 +20,10 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import io.realm.mongodb.User
 import kotlinx.android.synthetic.main.content_main.*
 import org.atex.app.R
+import org.atex.app.atexApp
 
 
 class MainActivity : AppCompatActivity() {
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home,
                 R.id.navigation_scan,
                 R.id.navigation_place,
-                R.id.navigation_ranking,
+                R.id.navigation_reward,
                 R.id.navigation_profile
             ),
             drawerLayout
@@ -79,15 +82,19 @@ class MainActivity : AppCompatActivity() {
         bottomNavView.setupWithNavController(navController)
 
 
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_logout -> {
+                    val user: User? = atexApp.currentUser()
+                    user?.logOut()
+                    val intent = Intent(this, IntroductionActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
 
+        }
     }
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.menu_navigation, menu)
-//        return true
-//    }
 
     fun appBarVisible(visible: Boolean) {
         when {

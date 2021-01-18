@@ -27,8 +27,6 @@ class PlaceViewModel : ViewModel() {
     }
     val eventUpdated: LiveData<Boolean> = _eventUpdated
 
-
-
     fun loadEvent() {
         val user: User? = atexApp.currentUser()
         val config = SyncConfiguration.Builder(user, PARTITION)
@@ -38,7 +36,7 @@ class PlaceViewModel : ViewModel() {
         Realm.getInstanceAsync(config, object : Realm.Callback() {
             override fun onSuccess(realm: Realm) {
                 Log.v(TAG(), "Successfully opened a realm .")
-                realm.where<event>().findAll().sort("date_time", Sort.ASCENDING)
+                realm.where<event>().findAll()
                     .addChangeListener { it ->
                         if (it.size > 0) {
                             _event.addAll(it)

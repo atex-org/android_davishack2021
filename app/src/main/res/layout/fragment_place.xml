@@ -19,6 +19,7 @@
         map:cameraZoom="12"
         map:uiRotateGestures="true"
         map:uiTiltGestures="true"
+        android:paddingBottom="60dp"
         map:uiZoomControls="true"
         map:uiZoomGestures="true" />
 

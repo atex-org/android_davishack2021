@@ -7,8 +7,8 @@
     <string name="title_profile">Profile</string>
     <string name="logo">Logo</string>
     <string name="navigation_drawer_header_content_description">Image Avatar</string>
-    <string name="navigation_drawer_header_title">Mr. Yo</string>
-    <string name="navigation_drawer_header_description">Software Engineer</string>
+    <string name="navigation_drawer_header_title">Mr Yo</string>
+    <string name="navigation_drawer_header_description">Senior Software Engineer</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -39,4 +39,5 @@
     <string name="today_ranking">Today\'s Ranking</string>
     <string name="copyright_text">© 2021 Atex.org. All rights reserved.</string>
     <string name="recycling_101">Recycling 101</string>
+    <string name="title_reward">Reward</string>
 </resources>

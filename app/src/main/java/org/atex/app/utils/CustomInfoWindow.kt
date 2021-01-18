@@ -27,10 +27,14 @@ class CustomInfoWindow(private val context: Fragment) : GoogleMap.InfoWindowAdap
             val textMessage = view.findViewById<TextView>(R.id.textMessage)
             val textType = view.findViewById<TextView>(R.id.textType)
             val imageEvent = view.findViewById<ImageView>(R.id.imageEvent)
+            val textCoins = view.findViewById<TextView>(R.id.textCoins)
+
+
             val event = marker.tag as event
             textTitle.text = event.title
             textMessage.text = event.detail
             textType.text = event.location?.address
+            textCoins.text = event.credit.toString()
             val url = event.thumbnailUrl
             if (!url.isNullOrEmpty()) {
                 Picasso.get().load(url).error(R.drawable.maps_sv_error_icon)
